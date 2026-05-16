@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atlantis Casino</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#000;
+      overflow-x:hidden;
+      color:white;
+      min-height:100vh;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .bg-glow{
+      position:fixed;
+      inset:0;
+      background:
+      radial-gradient(circle at top, rgba(255,140,0,.12), transparent 35%),
+      radial-gradient(circle at bottom, rgba(255,120,0,.06), transparent 45%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .main{
+      position:relative;
+      z-index:2;
+      width:100%;
+      min-height:100vh;
+      padding:18px;
+    }
+
+    .container{
+      width:100%;
+      max-width:620px;
+      margin:auto;
+    }
+
+    /* HERO */
+
+    .hero{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .logo{
+      width:110px;
+      margin-bottom:18px;
+      animation:float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-5px);}
+      100%{transform:translateY(0px);}
+    }
+
+    .vip-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 34px;
+      border-radius:999px;
+      border:1px solid rgba(255,190,0,.5);
+      background:rgba(255,170,0,.06);
+      color:#ffc400;
+      font-weight:700;
+      font-size:15px;
+      margin-bottom:18px;
+      box-shadow:0 0 18px rgba(255,170,0,.12);
+    }
+
+    /* CARD */
+
+    .offer-card{
+      width:100%;
+      max-width:520px;
+      background:
+      linear-gradient(180deg,#03254a 0%, #02101d 100%);
+      border:1px solid rgba(0,120,255,.22);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:
+      0 0 30px rgba(0,120,255,.15),
+      0 0 100px rgba(255,170,0,.05);
+    }
+
+    .offer-top{
+      padding:28px 24px 18px;
+    }
+
+    .offer-title{
+      font-size:26px;
+      line-height:1.05;
+      font-weight:900;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+
+    .offer-title span{
+      color:#ffb100;
+    }
+
+    .offer-subtitle{
+      color:#9fb4d4;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .divider{
+      height:1px;
+      width:100%;
+      background:rgba(255,255,255,.04);
+    }
+
+    /* BUTTON */
+
+    .button-wrap{
+      padding:24px 24px 12px;
+    }
+
+    .whatsapp-btn{
+      width:100%;
+      min-height:92px;
+      border-radius:30px;
+      background:linear-gradient(180deg,#ffbf00 0%, #ffae00 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+      color:white;
+      font-weight:900;
+      font-size:20px;
+      text-transform:uppercase;
+      position:relative;
+      overflow:hidden;
+      box-shadow:
+      0 0 35px rgba(255,196,0,.45),
+      0 0 80px rgba(255,196,0,.15),
+      inset 0 2px 0 rgba(255,255,255,.35);
+      animation:pulse 1.8s infinite;
+    }
+
+    .whatsapp-btn::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+      linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,.22) 50%,
+        transparent 80%
+      );
+      transform:translateX(-100%);
+      animation:shine 3s infinite;
+    }
+
+    @keyframes shine{
+
+      0%{
+        transform:translateX(-120%);
+      }
+
+      100%{
+        transform:translateX(120%);
+      }
+
+    }
+
+    @keyframes pulse{
+
+      0%{
+        transform:scale(1);
+        box-shadow:
+        0 0 0 0 rgba(255,196,0,.65),
+        0 0 35px rgba(255,196,0,.42);
+      }
+
+      70%{
+        transform:scale(1.02);
+        box-shadow:
+        0 0 0 18px rgba(255,196,0,0),
+        0 0 55px rgba(255,196,0,.6);
+      }
+
+      100%{
+        transform:scale(1);
+        box-shadow:
+        0 0 0 0 rgba(255,196,0,0),
+        0 0 35px rgba(255,196,0,.42);
+      }
+
+    }
+
+    .wa-icon{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      position:relative;
+      z-index:2;
+    }
+
+    .wa-icon svg{
+      width:58px;
+      height:58px;
+      display:block;
+    }
+
+    .whatsapp-btn div{
+      position:relative;
+      z-index:2;
+      line-height:1.05;
+    }
+
+    .support{
+      text-align:center;
+      color:#ffbe00;
+      font-weight:700;
+      padding:14px 18px 20px;
+      font-size:13px;
+      letter-spacing:.3px;
+    }
+
+    /* INFO */
+
+    .info-boxes{
+      width:100%;
+      max-width:460px;
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .info{
+      background:#071c3a;
+      border:1px solid rgba(0,140,255,.18);
+      border-radius:16px;
+      padding:14px 10px;
+      text-align:center;
+    }
+
+    .info small{
+      display:block;
+      color:#8cb5ff;
+      font-size:11px;
+      margin-bottom:7px;
+    }
+
+    .info strong{
+      color:#ffc400;
+      font-size:22px;
+      font-weight:800;
+    }
+
+    .footer-text{
+      text-align:center;
+      color:#666;
+      margin-top:20px;
+      margin-bottom:18px;
+      font-size:10px;
+    }
+
+    /* GAMES */
+
+    .games{
+      width:100%;
+      max-width:960px;
+      margin:0 auto;
+      border-radius:22px;
+      overflow:hidden;
+    }
+
+    .games img{
+      width:100%;
+      display:block;
+      border-radius:22px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .main{
+        padding:14px;
+      }
+
+      .logo{
+        width:95px;
+      }
+
+      .offer-title{
+        font-size:22px;
+      }
+
+      .offer-subtitle{
+        font-size:13px;
+      }
+
+      .whatsapp-btn{
+        min-height:78px;
+        font-size:17px;
+        border-radius:20px;
+        gap:14px;
+      }
+
+      .wa-icon{
+        width:44px;
+        height:44px;
+      }
+
+      .wa-icon svg{
+        width:44px;
+        height:44px;
+      }
+
+      .info-boxes{
+        gap:8px;
+      }
+
+      .info strong{
+        font-size:18px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-glow"></div>
+
+  <main class="main">
+
+    <div class="container">
+
+      <section class="hero">
+
+        <img src="assets/logo.png" class="logo">
+
+        <div class="vip-badge">
+          ACCESO VIP
+        </div>
+
+        <div class="offer-card">
+
+          <div class="offer-top">
+
+            <h1 class="offer-title">
+              OBTENÉ UN <span>50%</span> EN
+              <br>
+              TU PRIMER DEPOSITO
+            </h1>
+
+            <p class="offer-subtitle">
+              Escribinos apretando el botón de abajo
+            </p>
+
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="button-wrap">
+
+            <a href="https://wa.me/" class="whatsapp-btn">
+
+              <div class="wa-icon">
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+
+                  <circle cx="32" cy="32" r="30"
+                  fill="rgba(255,255,255,.12)"/>
+
+                  <path
+                  fill="#ffffff"
+                  d="M32 14c-9.94 0-18 7.84-18 17.5
+                  0 3.1.84 6.08 2.43 8.72L14 50l10.1-2.64
+                  A18.2 18.2 0 0 0 32 49c9.94 0 18-7.84
+                  18-17.5S41.94 14 32 14zm0 31.7
+                  c-2.65 0-5.24-.7-7.5-2.03l-.54-.32-4.45
+                  1.16 1.2-4.3-.35-.56A14.7 14.7 0 0 1
+                  17.3 31.5c0-8.1 6.6-14.7 14.7-14.7
+                  3.93 0 7.62 1.53 10.4 4.3
+                  2.77 2.78 4.3 6.47 4.3 10.4
+                  0 8.1-6.6 14.2-14.7 14.2z"/>
+
+                  <path
+                  fill="#ffffff"
+                  d="M40.2 35.8c-.44-.22-2.58-1.27-2.98-1.42
+                  -.4-.14-.7-.22-.98.22
+                  -.3.44-1.14 1.42-1.4 1.72
+                  -.26.3-.52.34-.96.12
+                  -.44-.22-1.86-.68-3.54-2.16
+                  -1.3-1.16-2.18-2.6-2.44-3.04
+                  -.26-.44-.03-.68.2-.9
+                  .2-.2.44-.52.64-.76
+                  .22-.26.3-.44.44-.74
+                  .14-.3.08-.54-.04-.76
+                  -.1-.22-.98-2.4-1.36-3.28
+                  -.36-.86-.72-.74-.98-.76h-.84
+                  c-.28 0-.74.1-1.12.54
+                  -.38.44-1.46 1.42-1.46 3.46
+                  0 2.04 1.48 4 1.68 4.28
+                  .22.3 2.92 4.46 7.08 6.24
+                  .98.42 1.76.68 2.36.86
+                  1 .32 1.9.28 2.62.16
+                  .8-.12 2.58-1.04 2.94-2.04
+                  .36-1 .36-1.86.26-2.04
+                  -.1-.18-.38-.28-.82-.5z"/>
+
+                </svg>
+
+              </div>
+
+              <div>
+                WHATSAPP
+                <br>
+                OFFICIAL
+              </div>
+
+            </a>
+
+          </div>
+
+          <div class="support">
+            ATENCIÓN Y RETIROS SIN LIMITES LAS 24 HS
+          </div>
+
+        </div>
+
+        <div class="info-boxes">
+
+          <div class="info">
+            <small>Mínimo de CARGA</small>
+            <strong>$2.000</strong>
+          </div>
+
+          <div class="info">
+            <small>Mínimo de RETIRO</small>
+            <strong>$5.000</strong>
+          </div>
+
+          <div class="info">
+            <small>RETIROS</small>
+            <strong>24 HS</strong>
+          </div>
+
+        </div>
+
+        <div class="footer-text">
+          © 2026 el juego es solo +18. Operá con responsabilidad.
+        </div>
+
+      </section>
+
+      <div class="games">
+        <img src="assets/games.png">
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
+```

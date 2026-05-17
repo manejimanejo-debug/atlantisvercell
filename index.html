@@ -412,9 +412,9 @@ src="https://www.facebook.com/tr?id=1598049584620386&ev=PageView&noscript=1"
 
           <div class="button-wrap">
 
- <a 
+<a 
   id="whatsapp-button"
-  href="https://wa.me/5491126772974?text=Hola%20%F0%9F%91%8B%20quiero%20reclamar%20mi%20bono%20del%20100%25%20en%20Atlantis%20VIP%20%F0%9F%8E%B0"
+  href="#"
   class="whatsapp-btn"
   target="_blank"
   rel="noopener noreferrer"
@@ -518,7 +518,46 @@ src="https://www.facebook.com/tr?id=1598049584620386&ev=PageView&noscript=1"
     </div>
 
   </main>
+<script>
 
+const whatsappNumbers = [
+  "5491126772974",
+  "5491176393811"
+];
+
+// ROTACIÓN CADA 5 MINUTOS
+const rotationTime = 5 * 60 * 1000;
+
+function getCurrentWhatsapp() {
+
+  const now = Date.now();
+
+  const index =
+    Math.floor(now / rotationTime) % whatsappNumbers.length;
+
+  return whatsappNumbers[index];
+}
+
+function updateWhatsappButton() {
+
+  const button = document.getElementById("whatsapp-button");
+
+  if(button){
+
+    const number = getCurrentWhatsapp();
+
+    const message = encodeURIComponent(
+      "Hola 👋 quiero reclamar mi bono en Atlantis VIP 🎰"
+    );
+
+    button.href =
+      `https://wa.me/${number}?text=${message}`;
+  }
+}
+
+updateWhatsappButton();
+
+</script>
 </body>
 </html>
 ```

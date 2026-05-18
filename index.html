@@ -562,11 +562,21 @@ const message = encodeURIComponent(
 // LEAD
 fbq('track', 'Lead');
 
-// PURCHASE
-fbq('track', 'Purchase', {
-value: 1,
-currency: 'USD'
-});
+// LEAD
+fbq('track', 'Lead');
+
+// PURCHASE ÚNICO
+fbq(
+  'track',
+  'Purchase',
+  {
+    value: 1,
+    currency: 'USD'
+  },
+  {
+    eventID: 'purchase_' + Date.now()
+  }
+);
 
 // ESPERA
 setTimeout(() => {

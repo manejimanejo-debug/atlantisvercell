@@ -32,6 +32,11 @@ s.parentNode.insertBefore(t,s);
 'https://connect.facebook.net/en_US/fbevents.js');
 
 fbq('init', '1598049584620386');
+
+// DESACTIVAR EVENTOS AUTOMÁTICOS
+fbq.disablePushState = true;
+
+fbq('track', 'PageView');
 fbq('track', 'PageView');
 
 </script>
@@ -566,17 +571,7 @@ const message = encodeURIComponent(
 "Hola 👋 quiero reclamar mi bono del 100% 🎰"
 );
 
-// LEAD
-fbq(
-'track',
-'Lead',
-{},
-{
-eventID: 'lead_' + Date.now()
-}
-);
-
-// PURCHASE
+// PURCHASE ÚNICO
 fbq(
 'track',
 'Purchase',

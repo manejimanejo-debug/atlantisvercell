@@ -548,9 +548,16 @@ parseInt(localStorage.getItem("wa_index")) || 0;
 const button =
 document.getElementById("whatsapp-button");
 
+// BLOQUEO DOBLE CLICK
+let processing = false;
+
 button.addEventListener("click", function(e){
 
 e.preventDefault();
+
+if(processing) return;
+
+processing = true;
 
 const currentNumber =
 whatsappNumbers[currentIndex];
@@ -560,31 +567,40 @@ const message = encodeURIComponent(
 );
 
 // LEAD
-fbq('track', 'Lead');
-
-// LEAD
-fbq('track', 'Lead');
-
-// PURCHASE ÚNICO
 fbq(
-  'track',
-  'Purchase',
-  {
-    value: 1,
-    currency: 'USD'
-  },
-  {
-    eventID: 'purchase_' + Date.now()
-  }
+'track',
+'Lead',
+{},
+{
+eventID: 'lead_' + Date.now()
+}
 );
 
-// ESPERA
+// PURCHASE
+fbq(
+'track',
+'Purchase',
+{
+value: 1,
+currency: 'USD'
+},
+{
+eventID: 'purchase_' + Date.now()
+}
+);
+
+// ABRIR WHATSAPP
 setTimeout(() => {
 
 const dynamicUrl =
 `https://wa.me/${currentNumber}?text=${message}`;
 
 window.open(dynamicUrl, "_blank");
+
+// DESBLOQUEAR
+setTimeout(() => {
+processing = false;
+}, 1500);
 
 }, 500);
 

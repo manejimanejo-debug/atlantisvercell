@@ -546,8 +546,36 @@ const whatsappNumbers = [
 "5491176390952"
 ];
 
-let currentIndex =
-parseInt(localStorage.getItem("wa_index")) || 0;
+// ROTA CADA 5 MINUTOS
+const rotationTime = 5 * 60 * 1000;
+
+const savedData =
+JSON.parse(localStorage.getItem("wa_rotation")) || {
+index: 0,
+timestamp: Date.now()
+};
+
+let currentIndex = savedData.index;
+let lastRotation = savedData.timestamp;
+
+// SI PASARON 5 MINUTOS → CAMBIA
+if(Date.now() - lastRotation >= rotationTime){
+
+currentIndex =
+(currentIndex + 1) %
+whatsappNumbers.length;
+
+lastRotation = Date.now();
+
+localStorage.setItem(
+"wa_rotation",
+JSON.stringify({
+index: currentIndex,
+timestamp: lastRotation
+})
+);
+
+}
 
 const button =
 document.getElementById("whatsapp-button");
@@ -601,22 +629,11 @@ const dynamicUrl =
 
 window.open(dynamicUrl, "_blank");
 
-// DESBLOQUEAR
 setTimeout(() => {
 processing = false;
 }, 1500);
 
 }, 500);
-
-// ROTACIÓN
-currentIndex =
-(currentIndex + 1) %
-whatsappNumbers.length;
-
-localStorage.setItem(
-"wa_index",
-currentIndex
-);
 
 });
 

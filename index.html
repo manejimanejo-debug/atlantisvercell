@@ -537,49 +537,48 @@ ATENCIÓN Y RETIROS SIN LIMITES LAS 24 HS
 
 <script>
 
-// NÚMEROS ACTIVOS
 const whatsappNumbers = [
 "5491176393811",
 "5491176390952"
 ];
 
-// ROTACIÓN
 let currentIndex =
 parseInt(localStorage.getItem("wa_index")) || 0;
 
-// BOTÓN
 const button =
 document.getElementById("whatsapp-button");
 
-// CLICK
 button.addEventListener("click", function(e){
 
 e.preventDefault();
 
-// NÚMERO ACTUAL EN TIEMPO REAL
 const currentNumber =
 whatsappNumbers[currentIndex];
 
-// MENSAJE
 const message = encodeURIComponent(
 "Hola 👋 quiero reclamar mi bono del 100% 🎰"
 );
 
-// EVENTO META
+// LEAD
 fbq('track', 'Lead');
 
-// ESPERA PARA ASEGURAR TRACKING
+// PURCHASE
+fbq('track', 'Purchase', {
+value: 1,
+currency: 'USD'
+});
+
+// ESPERA
 setTimeout(() => {
 
-// LINK DINÁMICO
 const dynamicUrl =
 `https://wa.me/${currentNumber}?text=${message}`;
 
 window.open(dynamicUrl, "_blank");
 
-}, 300);
+}, 500);
 
-// SIGUIENTE NÚMERO
+// ROTACIÓN
 currentIndex =
 (currentIndex + 1) %
 whatsappNumbers.length;
